@@ -2,11 +2,11 @@ import { getWildLifeSlug } from "@/sanity/sanity-utils";
 import { Metadata } from "next";
 
 type Props = {
-  params: { wildLife: string };
+  params: Promise<{ wildLife: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.wildLife;
+  const { wildLife: slug } = await params;
 
   const meta = await getWildLifeSlug(slug);
   return {

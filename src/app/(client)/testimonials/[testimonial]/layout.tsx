@@ -2,11 +2,11 @@ import { getTestimonialSlug } from "@/sanity/sanity-utils";
 import { Metadata } from "next";
 
 type Props = {
-  params: { testimonial: string };
+  params: Promise<{ testimonial: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.testimonial;
+  const { testimonial: slug } = await params;
 
   const meta = await getTestimonialSlug(slug);
   return {

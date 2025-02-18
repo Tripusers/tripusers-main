@@ -2,13 +2,13 @@ import { getDomesticPackagesSlug } from "@/sanity/sanity-utils";
 import { Metadata } from "next";
 
 type Props = {
-  params: {
+  params: Promise<{
     domesticPackages: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { domesticPackages: slug } = params;
+  const { domesticPackages: slug } = await params;
   const meta = await getDomesticPackagesSlug(slug);
   return {
     title: meta.title || "tripusers",

@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import { getInternationalSlug } from "@/sanity/sanity-utils";
 
 type Props = {
-  params: { international: string };
+  params: Promise<{ international: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { international: slug } = params;
+  const { international: slug } = await params;
   const meta = await getInternationalSlug(slug);
   return {
     title: {
