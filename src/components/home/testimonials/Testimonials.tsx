@@ -49,9 +49,6 @@ const Testimonials = () => {
     []
   );
 
-  const [thumbSwiper, setThumbSwiper] = useState<any>(null);
-  const [contentSwiper, setContentSwiper] = useState<any>(null);
-
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
@@ -113,7 +110,7 @@ const Testimonials = () => {
             slidesPerView={"auto"}
             coverflowEffect={{
               rotate: 0,
-              stretch: isMobile ? 300 : isTablet ? 340 : isMac ? 360 : 520,
+              stretch: isMobile ? 300 : isTablet ? 340 : isMac ? 320 : 520,
               depth: 100,
               modifier: 1,
               slideShadows: false,
