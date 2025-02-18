@@ -1,0 +1,252 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#slugForm {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4vw;
+  color: $dark !important;
+  background-color: rgba(0, 0, 0, 0.25);
+
+  .form-container {
+    width: 100%;
+    background-color: $light;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 1px $dark;
+    gap: 15px;
+  }
+
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $dark;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+
+    .logo-mark {
+      width: 30px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+
+    svg {
+      color: $red;
+    }
+  }
+
+  .form-main {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .errors {
+        font-size: 0.85rem;
+      }
+
+      label {
+        margin-top: 10px;
+        font-size: 0.8rem;
+        font-weight: bold;
+
+        &:nth-of-type(1) {
+          margin: 0;
+        }
+      }
+
+      input {
+        width: 100%;
+        height: 35px;
+        padding: 0 10px;
+        background: none;
+        border: 1px solid $dark;
+        border-radius: 5px;
+        color: $dark;
+        font-size: 0.8rem;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $yellow;
+        }
+      }
+
+      select {
+        width: 25%;
+        height: 35px;
+        padding: 0 10px;
+        background: none;
+        border: 1px solid $dark;
+        border-radius: 5px;
+        color: $dark;
+        font-size: 0.8rem;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $yellow;
+        }
+      }
+
+      .count-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .counter {
+          display: flex;
+          flex-direction: column;
+
+          gap: 5px;
+
+          .value {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+
+            button {
+              width: max-content;
+              color: $red;
+
+              svg {
+                $size: 40px;
+                min-width: $size;
+                min-height: $size;
+              }
+            }
+
+            .plus {
+              color: $yellow;
+            }
+          }
+        }
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .top {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+          }
+        }
+        .react-tel-input {
+          display: flex;
+
+          .form-control {
+            margin-left: 39px;
+            border-radius: 0 5px 5px 0;
+          }
+          .flag-dropdown {
+            background: none;
+            border: 1px solid $dark;
+          }
+        }
+      }
+
+      button[type="submit"] {
+        background-color: $yellow;
+        height: 35px;
+        border-radius: 5px;
+
+        &:disabled,
+        &[disabled] {
+          background-color: $red;
+          cursor: wait;
+
+          &:hover {
+            background-color: $red;
+            color: $light;
+          }
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #slugForm {
+    padding: 10vh 24vw;
+    padding: 10dvh 24vw;
+    height: auto;
+
+    .form-container {
+      height: auto;
+      overflow-y: visible;
+    }
+
+    .title-container {
+      font-size: 0.9rem;
+    }
+
+    .form-main {
+      form {
+        .count-container {
+          flex-direction: row;
+
+          .counter {
+            align-items: center;
+          }
+        }
+
+        .contact-details {
+          .top {
+            flex-direction: row;
+
+            .input-section {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Desktop
+
+@media screen and (min-width: 1025px) {
+  #slugForm {
+    padding: 10vh 34vw;
+    padding: 10dvh 34vw;
+
+    .form-container {
+      width: auto;
+      height: auto;
+      overflow-y: visible;
+    }
+
+    .form-main {
+      form {
+        button[type="submit"] {
+          transition: background 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+          &:hover {
+            background-color: $dark;
+            color: $light;
+          }
+        }
+      }
+    }
+  }
+}

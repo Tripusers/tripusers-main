@@ -1,0 +1,112 @@
+.date-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.date-picker-input {
+  padding: 8px;
+  width: 200px;
+}
+
+.calendar {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+  border-radius: 5px;
+}
+
+.calendar.visible {
+  display: block;
+}
+
+.calendar header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.calendar p {
+  margin: 0;
+}
+
+.calendar div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.calendar .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  button {
+    max-width: 60px;
+  }
+
+  select {
+    font-size: 1rem !important;
+    padding: 10px 10px !important;
+    width: auto !important;
+  }
+}
+
+.calendar span {
+  /* width: calc(100% / 7); */
+  padding: 5px;
+  text-align: center;
+  font-size: 0.9rem !important;
+}
+
+.calendar span.date {
+  cursor: pointer;
+}
+
+.calendar span.date.dis {
+  cursor: not-allowed;
+}
+
+.calendar span.date:not(.dis):hover {
+  background-color: #f0f0f0;
+}
+
+//*---------->> Desktop
+
+@media screen and (min-width: 1025px) {
+  .calendar {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none;
+    border-radius: 5px;
+    height: fit-content;
+  }
+
+  .calendar .buttons {
+    select {
+      padding: 5px 8px !important;
+      font-size: 0.9rem !important;
+    }
+  }
+
+  .date-picker-input {
+    font-size: 0.8rem !important;
+  }
+}

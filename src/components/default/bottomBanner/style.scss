@@ -1,0 +1,125 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#bottomBanner {
+  width: 100vw;
+  max-width: 100%;
+  padding: 4vw;
+
+  .container {
+    background-color: $yellow;
+    border-radius: 10px;
+    padding: 8vw 4vw 4vw 4vw;
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      h3 {
+        font-size: 1.4rem;
+        max-width: 80%;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+
+      button {
+        background-color: $offLight;
+        border-radius: 10px;
+        padding: 10px 0;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+    }
+
+    .bottom {
+      .img-cont {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+
+        img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #bottomBanner {
+    .container {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2vw 4vw;
+
+      .top {
+        width: 40%;
+
+        h3 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+
+        button {
+          max-width: 50%;
+        }
+      }
+
+      .bottom {
+        width: 40%;
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #bottomBanner {
+    padding: 4vw 12vw;
+
+    .container {
+      padding: 0 4vw;
+      overflow: hidden;
+
+      .top {
+        h3 {
+          max-width: 60%;
+        }
+        button {
+          transition:
+            background 100ms ease-in-out,
+            color 100ms ease-in-out;
+          &:hover {
+            background-color: $dark;
+            color: $offLight;
+          }
+        }
+      }
+
+      .bottom {
+        .img-cont {
+          width: 86%;
+          img {
+            transform: scale(1.4);
+          }
+        }
+      }
+    }
+  }
+}

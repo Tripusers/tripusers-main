@@ -1,0 +1,237 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#specialPackages {
+  max-width: 100vw;
+  width: 100%;
+  padding: 0 4vw;
+  margin: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+
+  .title-container {
+    font-family: $cookie;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      font-size: 2.2rem;
+      color: $yellow;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 100;
+    }
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+    /*   border-radius: 5px;
+    overflow: hidden; */
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      $size: 20px;
+      width: $size;
+      height: $size;
+      border-radius: 100px;
+      font-size: 10px;
+      color: $dark;
+      background-color: $yellow;
+      font-weight: bold;
+      display: grid;
+      place-content: center;
+    }
+
+    .swiperSlide-card {
+      border-radius: 5px;
+      overflow: hidden;
+
+      .bg-container {
+        width: 100%;
+        padding: 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 3.2 / 1;
+
+        &::after {
+          position: absolute;
+          content: "";
+          background: linear-gradient(
+            to bottom,
+            rgba(35, 35, 35, 0),
+            rgba(35, 35, 35, 0.3) 100%
+          );
+          top: auto;
+          bottom: 0;
+          height: 75%;
+          display: block;
+          left: 0;
+          width: 100%;
+        }
+
+        img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+
+          background-color: $dark;
+          background: linear-gradient(90deg, $yellow, $red, $yellow);
+          background-size: 200%;
+          animation: skeleton 1s infinite linear;
+
+          @keyframes skeleton {
+            from {
+              background-position: -100% 0;
+            }
+            to {
+              background-position: 100% 0;
+            }
+          }
+        }
+
+        .text-container {
+          position: relative;
+          z-index: 2;
+          color: $light;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+
+          .title {
+            width: 100%;
+            font-size: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+            h2 {
+              font-family: $cookie;
+              line-height: 1;
+              font-size: 1.8rem;
+            }
+
+            p {
+              font-size: 1rem;
+            }
+          }
+
+          .learn_more {
+            background-color: $yellow;
+            width: fit-content;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #specialPackages {
+    .title-container {
+      h2 {
+        font-size: 2.8rem;
+      }
+    }
+    .mySwiper {
+      .swiperSlide-card {
+        .bg-container {
+          padding: 80px 100px;
+          aspect-ratio: 3.2 / 1;
+          align-items: center;
+          justify-content: center;
+
+          &::after {
+            height: 100%;
+            background-color: rgba(35, 35, 35, 0.25);
+          }
+
+          .text-container {
+            justify-content: center;
+            align-items: center;
+
+            .title {
+              font-size: 2.5rem;
+              justify-content: center;
+              align-items: center;
+
+              h2 {
+                font-size: 3rem;
+              }
+
+              p {
+                font-size: 1.5rem;
+              }
+            }
+
+            .learn_more {
+              position: absolute;
+              bottom: -50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #specialPackages {
+    padding: 0 12vw;
+    .title-container {
+      h2 {
+        font-size: 3rem;
+      }
+    }
+
+    .mySwiper {
+      .swiperSlide-card {
+        .bg-container {
+          aspect-ratio: 3.2 / 1;
+
+          .text-container {
+            justify-content: center;
+            align-items: center;
+
+            .title {
+              font-size: 2.5rem;
+              justify-content: center;
+              align-items: center;
+
+              h2 {
+                font-size: 3rem;
+              }
+
+              p {
+                font-size: 1.2rem;
+              }
+            }
+
+            .learn_more {
+              position: absolute;
+              bottom: -50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

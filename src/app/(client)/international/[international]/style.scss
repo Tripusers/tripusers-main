@@ -1,0 +1,834 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#internationalSlugHero {
+  max-width: 100vw;
+  width: 100%;
+  height: 60vh;
+  height: 60dvh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+
+  .text-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    color: $light;
+
+    p {
+      font-family: $cookie;
+      font-size: 1.6rem;
+    }
+
+    h2 {
+      font-size: 3.4rem;
+    }
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+    background-color: $dark;
+    background: linear-gradient(90deg, $yellow, $red, $yellow);
+    background-size: 200%;
+    animation: skeleton 1s infinite linear;
+
+    @keyframes skeleton {
+      from {
+        background-position: -100% 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
+
+    .swiperSlide-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .bg-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+
+        display: grid;
+        place-content: center;
+
+        .bg {
+          position: absolute;
+          z-index: 2;
+          background-color: $dark;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.3;
+        }
+
+        img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+#packages {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px 4vw 40px 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .packages-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .package {
+      width: 100%;
+      background-color: $light;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .package-top {
+        padding: 10px 10px 20px 10px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-top: 1px solid $dark;
+        border-left: 1px solid $dark;
+        border-right: 1px solid $dark;
+      }
+
+      .package-swiper-container {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+
+        .mySwiper {
+          width: 100%;
+          height: 100%;
+          background-color: $dark;
+          background: linear-gradient(90deg, $yellow, $red, $yellow);
+          background-size: 200%;
+          animation: skeleton 1s infinite linear;
+
+          @keyframes skeleton {
+            from {
+              background-position: -100% 0;
+            }
+            to {
+              background-position: 100% 0;
+            }
+          }
+
+          .swiper-button-prev::after,
+          .swiper-button-next::after {
+            $size: 25px;
+            width: $size;
+            height: $size;
+            border-radius: 100px;
+            font-size: 10px;
+            color: $dark;
+            background-color: $yellow;
+            font-weight: bold;
+
+            display: grid;
+            place-content: center;
+          }
+          .swiperSlide-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .bg-container {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+
+              display: grid;
+              place-content: center;
+
+              .bg {
+                position: absolute;
+                z-index: 2;
+                background-color: $dark;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.5;
+              }
+
+              img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 1;
+              }
+            }
+          }
+        }
+      }
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .title {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          h3 {
+            font-size: 1.3rem;
+          }
+        }
+
+        .icons {
+          display: flex;
+          gap: 10px;
+
+          span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+
+            p {
+              font-size: 0.7rem;
+            }
+          }
+
+          svg {
+            $size: 20px;
+            width: $size;
+            height: $size;
+            aspect-ratio: 1 / 1;
+            color: $yellow;
+          }
+        }
+      }
+
+      .gap {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+
+        .line {
+          width: 100%;
+          height: 1px;
+
+          background-image: linear-gradient(
+            90deg,
+            #d7d7d7 33%,
+            hsla(0, 0%, 100%, 0) 0
+          );
+          background-position: bottom;
+          background-size: 14px 1px;
+          background-repeat: repeat-x;
+        }
+
+        .ticket-card-circle {
+          width: 40px;
+          aspect-ratio: 1 / 1;
+          border-radius: 1000px;
+          border: 1px solid $dark;
+          position: absolute;
+          background-color: $light;
+        }
+
+        .top {
+          width: 40px;
+          left: -20px;
+        }
+
+        .bottom {
+          right: -20px;
+        }
+      }
+
+      .cta-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        gap: 10px;
+        padding: 10px;
+
+        border-bottom: 1px solid $dark;
+        border-left: 1px solid $dark;
+        border-right: 1px solid $dark;
+        border-radius: 0 0 10px 10px;
+
+        .price-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .deal {
+            color: $red;
+            font-weight: 500;
+            width: 40%;
+          }
+
+          .price {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+
+            p {
+              font-size: 0.9rem;
+            }
+            h4 {
+              font-size: 1.2rem;
+
+              #actualPrice {
+                color: $dark;
+                font-weight: bold;
+                font-weight: 400;
+                font-size: 1rem;
+                opacity: 0.5;
+                text-decoration: line-through;
+              }
+            }
+          }
+        }
+
+        .links {
+          display: flex;
+          gap: 10px;
+
+          a,
+          button {
+            width: 50%;
+            height: 40px;
+            border-radius: 5px;
+            display: grid;
+            place-content: center;
+            color: $dark;
+          }
+
+          a {
+            background-color: $yellow;
+            color: $light;
+          }
+
+          button {
+            border: 1px solid $yellow;
+          }
+        }
+      }
+    }
+  }
+}
+
+#mustDoThings {
+  width: 100vw;
+  max-width: 100%;
+  background-color: rgba(29, 29, 31, 1);
+  color: $offLight;
+  padding: 50px 4vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      h3 {
+        font-family: $cookie;
+        font-weight: 100;
+        color: $red;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+
+      button {
+        width: 40px;
+        aspect-ratio: 1 / 1;
+        background-color: $offLight;
+        border-radius: 100px;
+        color: $dark;
+        display: grid;
+        place-content: center;
+
+        svg {
+          font-size: 1.4rem;
+          color: $yellow;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 100%;
+
+    .slider-container {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+
+      .slick-slide {
+        padding: 0 2vw;
+      }
+      .slick-list {
+        margin: 0 -2vw;
+      }
+
+      .slide {
+        width: 100%;
+
+        .card {
+          width: 100%;
+          aspect-ratio: 2 / 3;
+          position: relative;
+          overflow: hidden;
+          border-radius: 10px;
+          display: flex;
+          align-items: flex-end;
+          padding: 14px;
+
+          &::after {
+            position: absolute;
+            content: "";
+            background: linear-gradient(
+              rgba(35, 35, 35, 0) 60%,
+              rgba(35, 35, 35, 0.75) 100%
+            );
+            top: auto;
+            bottom: 0px;
+            height: 100%;
+            display: block;
+            left: 0px;
+            width: 100%;
+          }
+
+          img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+          }
+
+          p {
+            position: relative;
+            z-index: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+#travelTips {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px 4vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .card {
+      background-color: $light;
+      box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.15);
+      padding: 40px 4vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: 10px;
+
+      svg {
+        font-size: 4rem;
+        color: $yellow;
+      }
+
+      h3 {
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #internationalSlugHero {
+    .text-container {
+      p {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 4rem;
+      }
+    }
+  }
+
+  #packages {
+    padding: 40px 4vw;
+    gap: 30px;
+
+    .place-title {
+      font-size: 2rem;
+    }
+
+    .packages-container {
+      .package {
+        height: 100%;
+        flex-direction: row;
+
+        .package-top {
+          flex-direction: row;
+          gap: 20px;
+          border-right: none;
+          border-bottom: 1px solid $dark;
+          border-radius: 10px 0 0 10px;
+          padding: 10px 0 10px 10px;
+          width: calc(70% - 40px);
+        }
+
+        .package-swiper-container {
+          width: 300px;
+        }
+
+        .text-container {
+          width: 60%;
+          padding: 50px 0;
+          justify-content: space-between;
+
+          .title {
+            h3 {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+        .gap {
+          flex-direction: column;
+          align-items: center;
+          height: auto;
+          min-width: 40px;
+
+          .line {
+            width: 1px;
+            height: 100%;
+
+            background-image: linear-gradient(
+              0deg,
+              #d7d7d7 33%,
+              hsla(0, 0%, 100%, 0) 0
+            );
+
+            background-position: bottom;
+            background-size: 1px 14px;
+            background-repeat: repeat-y;
+          }
+
+          .top {
+            top: -20px;
+            left: auto;
+          }
+
+          .bottom {
+            right: auto;
+            bottom: -20px;
+          }
+        }
+
+        .cta-container {
+          width: 40%;
+          justify-content: center;
+          gap: 20px;
+          padding-right: 20px;
+          border-left: none;
+          border-top: 1px solid $dark;
+          border-radius: 0 10px 10px 0;
+
+          .price-container {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+
+            .deal {
+              width: auto;
+            }
+
+            .price {
+              p {
+                font-size: 1rem;
+              }
+              h4 {
+                font-size: 1.4rem;
+              }
+            }
+          }
+
+          .links {
+            gap: 5px;
+            a,
+            button {
+              font-size: 0.9rem;
+              height: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #mustDoThings {
+    flex-direction: row;
+    .left {
+      width: 40%;
+      .text-container {
+        h3 {
+          font-size: 1.4rem;
+        }
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .right {
+      width: 60%;
+
+      .slider-container {
+        .slick-slide {
+          padding: 0 1vw;
+        }
+        .slick-list {
+          margin: 0 -1vw;
+        }
+      }
+    }
+  }
+
+  #travelTips {
+    .container {
+      flex-direction: row;
+
+      .card {
+        padding: 40px 2vw;
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #internationalSlugHero {
+    height: 80vh;
+    height: 80dvh;
+  }
+
+  #packages {
+    padding: 20px 12vw 40px 12vw;
+    gap: 40px;
+
+    .packages-container {
+      .package {
+        &:hover {
+          .package-top {
+            border-color: $yellow;
+          }
+          .cta-container {
+            border-color: $yellow;
+          }
+
+          .gap {
+            .ticket-card-circle {
+              border-color: $yellow;
+            }
+
+            .line {
+              background-image: linear-gradient(
+                0deg,
+                $yellow 33%,
+                hsla(0, 0%, 100%, 0) 0
+              );
+            }
+          }
+        }
+
+        .package-swiper-container {
+          width: 300px;
+        }
+        .text-container {
+          padding: 60px 0;
+          width: 50%;
+
+          h3 {
+            transition: color 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+            &:hover {
+              color: $yellow;
+            }
+          }
+
+          .icons {
+            gap: 20px;
+
+            span {
+              gap: 5px;
+            }
+          }
+        }
+        .cta-container {
+          width: 30%;
+          padding-right: 30px;
+
+          .links {
+            a {
+              transition: background 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+              &:hover {
+                background-color: $dark;
+              }
+            }
+
+            button {
+              transition:
+                background 300ms cubic-bezier(0.075, 0.82, 0.165, 1),
+                color 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+              &:hover {
+                background-color: $dark;
+                border: none;
+                color: $light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #mustDoThings {
+    padding: 80px 12vw;
+    gap: 50px;
+
+    .left {
+      width: 30%;
+
+      .text-container {
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .buttons {
+        button {
+          transition: background 300ms ease-in-out;
+
+          svg {
+            transition: color 300ms ease-in-out;
+          }
+
+          &:hover {
+            background-color: $yellow;
+
+            svg {
+              color: $offLight;
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 70%;
+      .slider-container {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "";
+          background: linear-gradient(
+            -90deg,
+            rgba(35, 35, 35, 0) 0%,
+            rgba(35, 35, 35, 0) 50%,
+            rgba(29, 29, 31, 1) 100%
+          );
+          top: auto;
+          bottom: 0px;
+          height: 100%;
+          display: block;
+          left: 0px;
+          width: 40%;
+        }
+        cursor: grab;
+        .slick-slide {
+          padding: 0 10px;
+        }
+        .slick-list {
+          margin: 0 -10px;
+        }
+      }
+    }
+  }
+
+  #travelTips {
+    padding: 20px 12vw;
+
+    .container {
+      .card {
+        padding: 40px 2vw;
+      }
+    }
+  }
+}

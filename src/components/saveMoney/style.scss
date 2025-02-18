@@ -1,0 +1,21 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#saveMoney {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+  p {
+    background-color: $yellow;
+    color: $dark;
+    width: fit-content;
+    padding-inline: 0.4rem;
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+  }
+}

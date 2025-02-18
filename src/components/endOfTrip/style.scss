@@ -1,0 +1,65 @@
+@use "@/app/(client)/scss/variables" as *;
+
+#EndOfTrip {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  //*---------->> Desktop
+
+  @media screen and (min-width: 1025px) {
+    margin-bottom: -20px;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-family: $cookie;
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: $yellow;
+    word-spacing: 0.3rem;
+
+    //*---------->> Desktop
+
+    @media screen and (min-width: 1025px) {
+      font-size: 2rem;
+    }
+  }
+
+  .title {
+    font-family: $roboto;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: $dark;
+    word-spacing: normal;
+  }
+
+  .endOfTrip {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+
+    //*---------->> Desktop
+
+    @media screen and (min-width: 1025px) {
+      gap: 2rem;
+    }
+
+    .line {
+      flex: 1;
+      height: 1.4px;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 0%,
+        $yellow 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+  }
+}
