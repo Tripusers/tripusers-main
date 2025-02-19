@@ -16,6 +16,7 @@ import PageLoading from "@/components/default/loader/PageLoading";
 import { AiFillStar } from "react-icons/ai";
 import Link from "next/link";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -112,16 +113,7 @@ const page = () => {
               <SwiperSlide key={index} className="swiperSlide-card">
                 <div className="bg-container">
                   <div className="bg" />
-                  <img
-                    src={data?.cardImage.asset.url}
-                    alt="hero background"
-                    sizes={ImageSize.bannerSizes}
-                    style={{
-                      objectPosition: `${data.cardImage.hotspot?.x * 100}% ${
-                        data.cardImage.hotspot?.y * 100
-                      }%`,
-                    }}
-                  />
+                  <OptImage image={data.cardImage} alt="hero background" />
                 </div>
               </SwiperSlide>
             ))}
@@ -143,10 +135,11 @@ const page = () => {
                 href={`/testimonials/${data.slug}`}
                 className="img-container"
               >
-                <img
-                  src={data?.cardImage.asset.url}
+                <OptImage
+                  image={data.cardImage}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes="card"
+                  width={500}
                 />
               </Link>
               <div className="content">
@@ -163,10 +156,11 @@ const page = () => {
                   <div className="profile">
                     <div className="img-container">
                       {data.profile.image ? (
-                        <img
-                          src={data.profile.image}
+                        <OptImage
+                          image={data.profile.image}
                           alt="hero background"
-                          sizes={ImageSize.cardSize}
+                          sizes="avatar"
+                          width={100}
                         />
                       ) : (
                         <h5>{data.profile.name.charAt(0)}</h5>

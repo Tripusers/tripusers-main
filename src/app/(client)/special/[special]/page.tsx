@@ -27,16 +27,17 @@ import { special } from "@/types/special";
 import { getSpecialSlug } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
 import iconsData from "@/utils/icons-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 type Props = {
   params: Promise<{ special: string }>;
 };
 
 const page = ({ params }: Props) => {
+  const { special: slug } = use(params);
   const [data, setData] = useState<special>();
   const [mobileForm, setMobileForm] = useState(false);
   const [packageName, setPackageName] = useState("");
-  const { special: slug } = use(params);
   const sliderRef = useRef<Slider | null>(null);
 
   useEffect(() => {
@@ -116,16 +117,7 @@ const page = ({ params }: Props) => {
               <SwiperSlide key={index} className="swiperSlide-card">
                 <div className="bg-container">
                   <div className="bg" />
-                  <img
-                    src={item.url}
-                    alt="hero background"
-                    sizes={ImageSize.bannerSizes}
-                    style={{
-                      objectPosition: `${item.hotspot?.x * 100}% ${
-                        item.hotspot?.y * 100
-                      }%`,
-                    }}
-                  />
+                  <OptImage image={item} alt="hero background" />
                 </div>
               </SwiperSlide>
             ))}
@@ -165,10 +157,11 @@ const page = ({ params }: Props) => {
                               className="swiperSlide-card"
                             >
                               <div className="bg-container">
-                                <img
-                                  src={item.url}
+                                <OptImage
+                                  image={item}
                                   alt="hero background"
-                                  sizes={ImageSize.cardSize}
+                                  sizes="card"
+                                  width={500}
                                 />
                               </div>
                             </SwiperSlide>
@@ -300,10 +293,11 @@ const page = ({ params }: Props) => {
                   data.mustDoThings.cards.map((item, i) => (
                     <div className="slide" key={i}>
                       <div className="card">
-                        <img
-                          src={item.image}
+                        <OptImage
+                          image={item.image}
                           alt="card image"
-                          sizes={ImageSize.cardSize}
+                          sizes="avatar"
+                          width={100}
                         />
                         <p>{item.title}</p>
                       </div>

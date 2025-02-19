@@ -9,6 +9,7 @@ import PageLoading from "@/components/default/loader/PageLoading";
 import SwiperHero from "@/components/wildlife/Swiper";
 import { useRouter } from "next/navigation";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const [wildlife, setWildlife] = useState<wildLife[]>();
@@ -81,10 +82,11 @@ const page = () => {
             >
               <div className="img-container">
                 {data?.cardImage && (
-                  <img
-                    src={data.cardImage.asset.url}
+                  <OptImage
+                    image={data.cardImage}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
+                    width={500}
                   />
                 )}
               </div>

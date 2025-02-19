@@ -46,7 +46,7 @@ const SwiperHero = ({ data, title }: { data: Domestic[]; title: string }) => {
                 <img
                   src={item.cardImage.asset.url}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes={ImageSize.card}
                 />
               )}
             </div>

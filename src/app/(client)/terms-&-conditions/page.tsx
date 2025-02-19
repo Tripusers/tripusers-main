@@ -6,6 +6,7 @@ import { PortableText } from "@portabletext/react";
 import { PrivacyPolicyAndTnc } from "@/types/privacyPolicyAndTnc";
 import { getPrivacyPolicyAndTnc } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const [privacyPolicyAndTnc, setPrivacyPolicyAndTnc] =
@@ -31,10 +32,9 @@ const page = () => {
         <div className="img-container">
           {privacyPolicyAndTnc?.termsAndConditions.bannerImage && (
             <>
-              <img
-                src={privacyPolicyAndTnc?.termsAndConditions.bannerImage}
+              <OptImage
+                image={privacyPolicyAndTnc.termsAndConditions.bannerImage}
                 alt="contact hero image"
-                sizes={ImageSize.bannerSizes}
               />
               <div className="bg" />
             </>

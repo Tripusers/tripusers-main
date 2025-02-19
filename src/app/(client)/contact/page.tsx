@@ -8,6 +8,7 @@ import { contactUs } from "@/types/contact";
 import PageLoading from "@/components/default/loader/PageLoading";
 import ImageSize from "@/utils/image-utils";
 import Form from "@/components/contact/Form";
+import OptImage from "@/components/commmon/OptImage";
 
 const Contact = () => {
   const [contact, setContacts] = useState<contactUs>();
@@ -35,11 +36,7 @@ const Contact = () => {
         <div className="img-container">
           {contact?.bannerImage && (
             <>
-              <img
-                src={contact?.bannerImage}
-                alt="contact hero image"
-                sizes={ImageSize.bannerSizes}
-              />
+              <OptImage image={contact.bannerImage} alt="contact hero image" />
               <div className="bg" />
             </>
           )}

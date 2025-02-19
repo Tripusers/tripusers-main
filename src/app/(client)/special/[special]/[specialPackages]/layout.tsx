@@ -1,6 +1,5 @@
 import { getSpecialPackagesSlug } from "@/sanity/sanity-utils";
 import { Metadata } from "next";
-import { use } from "react";
 
 type Props = {
   params: Promise<{
@@ -9,7 +8,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { specialPackages: slug } = use(params);
+  const { specialPackages: slug } = await params;
   const meta = await getSpecialPackagesSlug(slug);
   return {
     title: {

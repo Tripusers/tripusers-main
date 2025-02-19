@@ -175,7 +175,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 src={brandData[0]?.logoMark}
                 alt="tripusers.com logo"
                 fill
-                sizes={ImageSize.cardSize}
+                sizes={ImageSize.card}
               />
             )}
           </Link>

@@ -43,7 +43,7 @@ const Header = () => {
             }
             alt="tripusers.com logo"
             fill
-            sizes={ImageSize.cardSize}
+            sizes={ImageSize.card}
           />
         )}
       </Link>

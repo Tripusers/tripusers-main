@@ -1,16 +1,17 @@
 import { PortableTextBlock } from "sanity";
+import { ImagePropsSanity } from "./imageProps";
 
 export type About = {
   _id: string;
   createdAt: Date;
   title: string;
   subtitle: string;
-  bannerImage: string;
+  bannerImage: ImagePropsSanity;
   aboutTitle: string;
   aboutDescription: PortableTextBlock[];
-  imageOne: string;
-  imageTwo: string;
-  imageThree: string;
+  imageOne: ImagePropsSanity;
+  imageTwo: ImagePropsSanity;
+  imageThree: ImagePropsSanity;
   vision: {
     title: string;
     description: string;

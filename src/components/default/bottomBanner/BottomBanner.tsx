@@ -6,6 +6,7 @@ import CustomiseForm from "../../forms/CustomiseForm";
 import { footer } from "@/types/footer";
 import { getBottomBanner } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const BottomBanner = () => {
   const [data, setData] = useState<footer>();
@@ -37,10 +38,11 @@ const BottomBanner = () => {
         </div>
         <div className="bottom">
           <div className="img-cont">
-            <img
-              src={data.bottomBanner.image}
+            <OptImage
+              image={data.bottomBanner.image}
               alt="banner image"
-              sizes={ImageSize.cardSize}
+              sizes="card"
+              width={500}
             />
           </div>
         </div>

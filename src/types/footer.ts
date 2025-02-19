@@ -1,7 +1,9 @@
+import { ImagePropsSanity } from "./imageProps";
+
 export type bottomBanner = {
   headline: string;
   description: string;
-  image: string;
+  image: ImagePropsSanity;
 };
 
 export type footer = {

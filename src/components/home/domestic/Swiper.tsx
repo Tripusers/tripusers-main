@@ -45,7 +45,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
                 <img
                   src={item.cardImage.asset.url}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes={ImageSize.card}
                 />
               )}
 

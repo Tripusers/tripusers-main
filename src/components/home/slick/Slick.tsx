@@ -9,7 +9,7 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Domestic } from "@/types/domestic";
 import { international } from "@/types/international";
 import { wildLife } from "@/types/wildlife";
-import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const Slick = ({
   data,
@@ -88,11 +88,7 @@ const Slick = ({
           <div className="slick_slide_container" key={`${item._id}-${index}`}>
             <Link href={`/domestic/${item.slug}`}>
               {item.cardImage && (
-                <img
-                  src={item.cardImage.asset.url}
-                  alt="domestic"
-                  sizes={ImageSize.cardSize}
-                />
+                <OptImage image={item.cardImage} alt="domestic" sizes="card" />
               )}
               <div className="text_container">
                 <h3>{item.name}</h3>

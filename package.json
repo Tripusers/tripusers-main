@@ -28,6 +28,7 @@
     "react-toastify": "^11.0.3",
     "rss": "^1.2.2",
     "sanity": "^3.76.0",
+    "sanity-image": "^1.0.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.3",
     "sass": "^1.85.0",
     "slick-carousel": "^1.8.1",

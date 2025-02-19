@@ -18,11 +18,11 @@ import Link from "next/link";
 import { DomesticPackages } from "@/types/domestic";
 import { getDomesticPackagesSlug } from "@/sanity/sanity-utils";
 import iconsData from "@/utils/icons-utils";
-import ImageSize from "@/utils/image-utils";
 import SlugForm from "@/components/slugForm/SlugForm";
 import PageLoading from "@/components/default/loader/PageLoading";
 import SaveMoney from "@/components/saveMoney/SaveMoney";
 import EndOfTrip from "@/components/endOfTrip/EndOfTrip";
+import OptImage from "@/components/commmon/OptImage";
 
 type Props = {
   params: Promise<{
@@ -97,16 +97,7 @@ const page = ({ params }: Props) => {
               <SwiperSlide key={index} className="swiperSlide-card">
                 <div className="bg-container">
                   <div className="bg" />
-                  <img
-                    src={item.url}
-                    alt="hero background"
-                    sizes={ImageSize.bannerSizes}
-                    style={{
-                      objectPosition: `${item.hotspot?.x * 100}% ${
-                        item.hotspot?.y * 100
-                      }%`,
-                    }}
-                  />
+                  <OptImage image={item} alt="hero background" />
                 </div>
               </SwiperSlide>
             ))}
@@ -237,10 +228,11 @@ const page = ({ params }: Props) => {
                             <div className="images-container">
                               {content.images.map((img, index) => (
                                 <div key={index} className="img-container">
-                                  <img
-                                    src={img.url}
+                                  <OptImage
+                                    image={img}
                                     alt="hero background"
-                                    sizes={ImageSize.cardSize}
+                                    sizes="card"
+                                    width={500}
                                   />
                                 </div>
                               ))}

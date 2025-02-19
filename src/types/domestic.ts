@@ -1,9 +1,10 @@
 import { PortableTextBlock } from "sanity";
 import { Crop, Hotspot } from "./types";
+import { ImagePropsSanity } from "./imageProps";
 
 export type Cards = {
   title: string;
-  image: "string";
+  image: ImagePropsSanity;
 };
 
 export type MustDoThings = {
@@ -22,12 +23,7 @@ export type DomesticPackages = {
     current: string;
   };
   place: Domestic;
-  packageImages: {
-    _id: string;
-    url: string;
-    hotspot: Hotspot;
-    crop: Crop;
-  }[];
+  packageImages: ImagePropsSanity[];
   timeline: string;
   addOns: {
     isHotels: boolean;
@@ -51,10 +47,7 @@ export type DomesticPackages = {
     content: {
       title: string;
       description: PortableTextBlock[];
-      images: {
-        _id: string;
-        url: string;
-      }[];
+      images: ImagePropsSanity[];
     }[];
   }[];
 };
@@ -66,21 +59,9 @@ export type Domestic = {
   slug: {
     current: string;
   };
-  cardImage: {
-    asset: {
-      _id: string;
-      url: string;
-    },
-    hotspot: Hotspot;
-    crop: Crop;
-  };
+  cardImage: ImagePropsSanity;
   isTrending: boolean;
-  bannerImages: {
-    _id: string;
-    url: string;
-    hotspot: Hotspot;
-    crop: Crop;
-  }[];
+  bannerImages: ImagePropsSanity[];
   domesticPackages: DomesticPackages[];
   mustDoThings: MustDoThings;
 };

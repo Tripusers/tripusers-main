@@ -10,6 +10,7 @@ import { getDomestic } from "@/sanity/sanity-utils";
 import PageLoading from "@/components/default/loader/PageLoading";
 import ImageSize from "@/utils/image-utils";
 import SwiperHero from "@/components/international/Swiper";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const [domestic, setDomestic] = useState<Domestic[]>([]);
@@ -81,10 +82,10 @@ const page = () => {
             >
               <div className="img-container">
                 {data?.cardImage && (
-                  <img
-                    src={data.cardImage.asset.url}
+                  <OptImage
+                    image={data.cardImage}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
                   />
                 )}
               </div>

@@ -22,6 +22,7 @@ import Testimonial from "@/types/testimonials";
 import { getTrending, getTrendingTestimonials } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
 import { useMediaQuery } from "react-responsive";
+import OptImage from "@/components/commmon/OptImage";
 
 function getRandomUniqueElements(array: any[], count: number) {
   // Shuffle the input array
@@ -124,10 +125,11 @@ const Testimonials = () => {
               >
                 <Link href={`/testimonials/${data.slug}`}>
                   {data && data.cardImage && (
-                    <img
-                      src={data.cardImage.asset.url}
+                    <OptImage
+                      image={data.cardImage}
                       alt="hero background"
-                      sizes={ImageSize.cardSize}
+                      sizes="card"
+                      width={500}
                     />
                   )}
                 </Link>
@@ -183,10 +185,11 @@ const Testimonials = () => {
                   <div className="profile">
                     <div className="img-container">
                       {data.profile.image ? (
-                        <img
-                          src={data.profile.image}
+                        <OptImage
+                          image={data.profile.image}
                           alt="hero background"
-                          sizes={ImageSize.cardSize}
+                          sizes="avatar"
+                          width={100}
                         />
                       ) : (
                         <h5>{data.profile.name.charAt(0)}</h5>

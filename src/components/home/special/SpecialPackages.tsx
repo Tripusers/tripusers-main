@@ -15,6 +15,7 @@ import { special } from "@/types/special";
 import { trending } from "@/types/trending";
 import { getSpecial, getTrending } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const SpecialPackages = () => {
   const [specialData, setSpecialData] = useState<special[]>();
@@ -68,11 +69,7 @@ const SpecialPackages = () => {
             {specialData.map((item, index) => (
               <SwiperSlide key={item._id} className="swiperSlide-card">
                 <Link href={`/special/${item.slug}`} className="bg-container">
-                  <img
-                    src={item.cardImage}
-                    alt="hero background"
-                    sizes={ImageSize.bannerSizes}
-                  />
+                  <OptImage image={item.cardImage} alt="hero background" />
                   {item.cardTitle && item.cardSubtitle && (
                     <div className="text-container">
                       <div className="title">

@@ -1,4 +1,5 @@
 import { PortableTextBlock } from "sanity";
+import { ImagePropsSanity } from "./imageProps";
 
 export type PrivacyPolicyAndTnc = {
   _id: string;
@@ -7,13 +8,13 @@ export type PrivacyPolicyAndTnc = {
   privacyPolicy: {
     title: string;
     updatedAt: string;
-    bannerImage: string;
+    bannerImage: ImagePropsSanity;
     content: PortableTextBlock[];
   };
   termsAndConditions: {
     title: string;
     updatedAt: string;
-    bannerImage: string;
+    bannerImage: ImagePropsSanity;
     content: PortableTextBlock[];
   };
 };

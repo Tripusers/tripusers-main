@@ -142,7 +142,7 @@ const CustomiseForm = ({ onClick }: props) => {
               src={brandData[0]?.logoMark}
               alt="tripusers.com logo"
               fill
-              sizes={ImageSize.cardSize}
+              sizes={ImageSize.card}
             />
           </Link>
           <h2>Customise your trip</h2>

@@ -15,6 +15,7 @@ import ImageSize from "@/utils/image-utils";
 import { hero } from "@/types/hero";
 import { heroInfo } from "@/types/heroInfo";
 import { getHero, getHeroInfo } from "@/sanity/sanity-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const HeroSection = () => {
   const [data, setData] = useState<hero[]>([]);
@@ -140,15 +141,10 @@ const HeroSection = () => {
             <SwiperSlide className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={data[0]?.heroImage.asset.url}
+                <OptImage
+                  image={data[0]?.heroImage}
                   alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${data[0].heroImage.hotspot?.x * 100}% ${
-                      data[0].heroImage.hotspot?.y * 100
-                    }%`,
-                  }}
+                  width={1500}
                 />
               </div>
               <div className="text-container">
@@ -164,15 +160,10 @@ const HeroSection = () => {
             <SwiperSlide className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={data[1]?.heroImage.asset.url}
+                <OptImage
+                  image={data[1]?.heroImage}
                   alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${data[1].heroImage.hotspot?.x * 100}% ${
-                      data[1].heroImage.hotspot?.y * 100
-                    }%`,
-                  }}
+                  width={1500}
                 />
               </div>
               <div className="text-container">
@@ -188,15 +179,10 @@ const HeroSection = () => {
             <SwiperSlide className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={data[2]?.heroImage.asset.url}
+                <OptImage
+                  image={data[2]?.heroImage}
                   alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${data[2].heroImage.hotspot?.x * 100}% ${
-                      data[2].heroImage.hotspot?.y * 100
-                    }%`,
-                  }}
+                  sizes="banner"
                 />
               </div>
               <div className="text-container">
@@ -212,15 +198,10 @@ const HeroSection = () => {
             <SwiperSlide className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={data[3]?.heroImage.asset.url}
+                <OptImage
+                  image={data[3]?.heroImage}
                   alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${data[3].heroImage.hotspot?.x * 100}% ${
-                      data[3].heroImage.hotspot?.y * 100
-                    }%`,
-                  }}
+                  sizes="banner"
                 />
               </div>
               <div className="text-container">
@@ -236,15 +217,10 @@ const HeroSection = () => {
             <SwiperSlide className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={data[4]?.heroImage.asset.url}
+                <OptImage
+                  image={data[4]?.heroImage}
                   alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${data[4].heroImage.hotspot?.x * 100}% ${
-                      data[4].heroImage.hotspot?.y * 100
-                    }%`,
-                  }}
+                  sizes="banner"
                 />
               </div>
               <div className="text-container">

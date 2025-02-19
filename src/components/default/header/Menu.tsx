@@ -139,7 +139,7 @@ const Menu = (logo: props) => {
                   src={logo.logo}
                   alt="tripusers.com logo"
                   fill
-                  sizes={ImageSize.cardSize}
+                  sizes={ImageSize.card}
                 />
               </Link>
               <button ref={menuCloseButtonRef}>
@@ -193,7 +193,7 @@ const Menu = (logo: props) => {
                   src={logo.logo}
                   alt="tripusers.com logo"
                   fill
-                  sizes={ImageSize.cardSize}
+                  sizes={ImageSize.card}
                 />
               </Link>
               <button className="menu-close-button" ref={menuCloseButtonRef}>

@@ -120,7 +120,7 @@ const Footer = () => {
               src={brand[0].lightImage}
               alt="logo"
               fill
-              sizes={ImageSize.cardSize}
+              sizes={ImageSize.card}
             />
           )}
         </div>

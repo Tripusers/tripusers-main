@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { international as inter } from "@/types/international";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const SwiperHero = ({ data, title }: { data: inter[]; title: string }) => {
   return (
@@ -31,16 +32,7 @@ const SwiperHero = ({ data, title }: { data: inter[]; title: string }) => {
           <SwiperSlide key={index} className="swiperSlide-card">
             <div className="bg-container">
               <div className="bg" />
-              <img
-                src={item.cardImage.asset.url}
-                alt="hero background"
-                sizes={ImageSize.bannerSizes}
-                style={{
-                  objectPosition: `${item.cardImage.hotspot?.x * 100}% ${
-                    item.cardImage.hotspot?.y * 100
-                  }%`,
-                }}
-              />
+              <OptImage image={item.cardImage} alt="hero background" />
             </div>
           </SwiperSlide>
         ))}

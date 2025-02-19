@@ -28,6 +28,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import SaveMoney from "@/components/saveMoney/SaveMoney";
+import OptImage from "@/components/commmon/OptImage";
 
 type Props = {
   params: Promise<{ wildLife: string }>;
@@ -119,16 +120,7 @@ const page = ({ params }: Props) => {
               <SwiperSlide key={index} className="swiperSlide-card">
                 <div className="bg-container">
                   <div className="bg" />
-                  <img
-                    src={item.url}
-                    alt="hero background"
-                    sizes={ImageSize.bannerSizes}
-                    style={{
-                      objectPosition: `${item.hotspot?.x * 100}% ${
-                        item.hotspot?.y * 100
-                      }%`,
-                    }}
-                  />
+                  <OptImage image={item} alt="hero background" />
                 </div>
               </SwiperSlide>
             ))}
@@ -168,10 +160,11 @@ const page = ({ params }: Props) => {
                               className="swiperSlide-card"
                             >
                               <div className="bg-container">
-                                <img
-                                  src={item.url}
+                                <OptImage
+                                  image={item}
                                   alt="hero background"
-                                  sizes={ImageSize.cardSize}
+                                  sizes="card"
+                                  width={500}
                                 />
                               </div>
                             </SwiperSlide>
@@ -304,10 +297,11 @@ const page = ({ params }: Props) => {
                   data.mustDoThings.cards.map((item, i) => (
                     <div className="slide" key={i}>
                       <div className="card">
-                        <img
-                          src={item.image}
+                        <OptImage
+                          image={item.image}
                           alt="card image"
-                          sizes={ImageSize.cardSize}
+                          sizes="avatar"
+                          width={100}
                         />
                         <p>{item.title}</p>
                       </div>

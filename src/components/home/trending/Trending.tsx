@@ -12,6 +12,7 @@ import {
   getTrendingHomeInternational,
 } from "@/sanity/sanity-utils";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 const Trending = () => {
   const [TrendingData, setTrendingData] = useState<international[]>([]);
@@ -57,15 +58,10 @@ const Trending = () => {
             className="country"
           >
             {item.cardImage && (
-              <img
-                src={item.cardImage.asset.url}
-                alt={`image of  ${item.name}`}
-                sizes={ImageSize.bannerSizes}
-                style={{
-                  objectPosition: `${item.cardImageHotspot?.x * 100}% ${
-                    item.cardImageHotspot?.y * 100
-                  }%`,
-                }}
+              <OptImage
+                image={item.cardImage}
+                alt={`image of ${item.name}`}
+                sizes="card"
               />
             )}
             <div className="text-container">

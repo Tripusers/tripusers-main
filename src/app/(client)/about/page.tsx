@@ -18,6 +18,7 @@ import { getAbout, getHeroInfo } from "@/sanity/sanity-utils";
 import PageLoading from "@/components/default/loader/PageLoading";
 import ImageSize from "@/utils/image-utils";
 import { heroInfo } from "@/types/heroInfo";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const isMobile = useMediaQuery({ maxWidth: 820 });
@@ -55,10 +56,9 @@ const page = () => {
         <div className="img-container">
           {aboutData?.bannerImage && (
             <>
-              <img
-                src={aboutData?.bannerImage}
+              <OptImage
+                image={aboutData.bannerImage}
                 alt="contact hero image"
-                sizes={ImageSize.bannerSizes}
               />
               <div className="bg" />
             </>
@@ -89,28 +89,31 @@ const page = () => {
             >
               <SwiperSlide className="swiperSlide-card">
                 <div className="img-container">
-                  <img
-                    src={aboutData.imageOne}
+                  <OptImage
+                    image={aboutData.imageOne}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
+                    width={500}
                   />
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiperSlide-card">
                 <div className="img-container">
-                  <img
-                    src={aboutData.imageTwo}
+                  <OptImage
+                    image={aboutData.imageTwo}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
+                    width={500}
                   />
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiperSlide-card">
                 <div className="img-container">
-                  <img
-                    src={aboutData.imageThree}
+                  <OptImage
+                    image={aboutData.imageThree}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
+                    width={500}
                   />
                 </div>
               </SwiperSlide>
@@ -118,24 +121,24 @@ const page = () => {
           ) : (
             <div className="images-container">
               <div className="img-container">
-                <img
-                  src={aboutData.imageOne}
+                <OptImage
+                  image={aboutData.imageOne}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes="card"
                 />
               </div>
               <div className="img-container">
-                <img
-                  src={aboutData.imageTwo}
+                <OptImage
+                  image={aboutData.imageTwo}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes="card"
                 />
               </div>
               <div className="img-container">
-                <img
-                  src={aboutData.imageThree}
+                <OptImage
+                  image={aboutData.imageThree}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes="card"
                 />
               </div>
             </div>

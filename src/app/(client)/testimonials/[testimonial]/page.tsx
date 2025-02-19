@@ -15,6 +15,7 @@ import { trending } from "@/types/trending";
 import { AiFillStar } from "react-icons/ai";
 import { PortableText } from "@portabletext/react";
 import ImageSize from "@/utils/image-utils";
+import OptImage from "@/components/commmon/OptImage";
 
 type Props = {
   params: Promise<{ testimonial: string }>;
@@ -84,16 +85,7 @@ const page = ({ params }: Props) => {
             <SwiperSlide key={index} className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
-                <img
-                  src={item.url}
-                  alt="hero background"
-                  sizes={ImageSize.bannerSizes}
-                  style={{
-                    objectPosition: `${item.hotspot?.x * 100}% ${
-                      item.hotspot?.y * 100
-                    }%`,
-                  }}
-                />
+                <OptImage image={item} alt="hero background" />
               </div>
             </SwiperSlide>
           ))}
@@ -107,10 +99,10 @@ const page = ({ params }: Props) => {
         <div className="top">
           <div className="img-container">
             {testimonialData && (
-              <img
-                src={testimonialData.cardImage.asset.url}
+              <OptImage
+                image={testimonialData.cardImage}
                 alt="hero background"
-                sizes={ImageSize.cardSize}
+                sizes="card"
               />
             )}
           </div>
@@ -127,10 +119,11 @@ const page = ({ params }: Props) => {
               <div className="profile">
                 <div className="img-container">
                   {testimonialData?.profile.image ? (
-                    <img
-                      src={testimonialData?.profile.image}
+                    <OptImage
+                      image={testimonialData.profile.image}
                       alt="hero background"
-                      sizes={ImageSize.cardSize}
+                      sizes="avatar"
+                      width={100}
                     />
                   ) : (
                     <h5>{testimonialData?.profile.name.charAt(0)}</h5>
@@ -185,10 +178,11 @@ const page = ({ params }: Props) => {
           {testimonialData &&
             testimonialData?.images.map((item, index) => (
               <SwiperSlide key={index} className="swiperSlide-card">
-                <img
-                  src={item.url}
+                <OptImage
+                  image={item}
                   alt="hero background"
-                  sizes={ImageSize.cardSize}
+                  sizes="card"
+                  width={500}
                 />
               </SwiperSlide>
             ))}

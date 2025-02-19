@@ -41,7 +41,7 @@ export async function getHero(): Promise<hero[]> {
       _createdAt,
       title,
       place->{name, slug},
-      "heroImage":heroImage{asset->{url},hotspot,crop},
+      "heroImage":heroImage{asset->{url, _id, metadata},hotspot,crop},
     }`
   );
 }
@@ -86,7 +86,7 @@ export async function getTrending(): Promise<trending> {
 export async function getInternational(
   page: number = 1,
   pageSize: number = 9
-): Promise<{ data: international[]; totalPages: number; }> {
+): Promise<{ data: international[]; totalPages: number }> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
@@ -96,10 +96,13 @@ export async function getInternational(
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url},hotspot,crop},
+      "cardImage": cardImage{asset->{_id, url, metadata},hotspot,crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "hotspot": hotspot,
+        "crop": crop,
+        "metadata": asset->metadata,
       },
       "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
@@ -109,6 +112,9 @@ export async function getInternational(
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          "hotspot": hotspot,
+          "crop": crop,
+          "metadata": asset->metadata,
         },
         timeline,
         deal,
@@ -127,6 +133,9 @@ export async function getInternational(
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              "hotspot": hotspot,
+              "crop": crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -163,12 +172,14 @@ export async function getInternationalSlug(
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url},hotspot, crop},
+      "cardImage": cardImage{asset->{_id, url, metadata},hotspot, crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       "mustDoThings": mustDoThings {
         isTrue,
@@ -177,7 +188,7 @@ export async function getInternationalSlug(
         description,
         "cards": cards[] {
           title,
-          "image": image.asset->url
+          "image": image{asset->{_id, url, metadata},hotspot, crop}
         }
       },
       "travelTips": travelTips {
@@ -206,6 +217,10 @@ export async function getInternationalSlug(
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          "asset": asset->{_id, url, metadata},
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         "addOns": addOns {
@@ -233,6 +248,10 @@ export async function getInternationalSlug(
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              "asset": asset->{_id, url, metadata},
+              "hotspot": hotspot,
+              "crop": crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -255,6 +274,10 @@ export async function getInternationalPackagesSlug(
       "packageImages": packageImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
       timeline,
       "addOns": addOns {
@@ -282,6 +305,10 @@ export async function getInternationalPackagesSlug(
           "images": images[] {
             "_id": asset->_id,
             "url": asset->url,
+            "asset": asset->{_id, url, metadata},
+            hotspot,
+            crop,
+            "metadata": asset->metadata,
           }
         }
       },
@@ -299,13 +326,7 @@ export async function getTrendingHomeInternational(
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
-      "cardImageHotspot": cardImage.hotspot{
-        width,
-        height,
-        x,
-        y,
-      },
+      "cardImage": cardImage{asset->{_id,url,metadata}, hotspot, crop},
       isTrending,
       isTrendingHome,
       isTrendingHomeIndex,
@@ -328,7 +349,7 @@ export async function getSliderHomeInternational(): Promise<international[]> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{_id, url, metadata}, hotspot, crop},
       isTrending,
       isTrendingHome,
       isTrendingSlider,
@@ -349,7 +370,7 @@ export async function getTrendingInternational(): Promise<international[]> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{_id, url, metadata}, hotspot, crop},
       isTrending,
       "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
@@ -357,7 +378,7 @@ export async function getTrendingInternational(): Promise<international[]> {
         title,
         price,
       },
-    }`,
+    }`
   );
 }
 
@@ -366,7 +387,7 @@ export async function getTrendingInternational(): Promise<international[]> {
 export async function getDomestic(
   page: number = 1,
   pageSize: number = 9
-): Promise<{ data: Domestic[]; totalPages: number; }> {
+): Promise<{ data: Domestic[]; totalPages: number }> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
@@ -377,10 +398,13 @@ export async function getDomestic(
       name,
       isTrending,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{_id, url, metadata}, hotspot, crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
       "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
         _id,
@@ -390,6 +414,9 @@ export async function getDomestic(
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         deal,
@@ -408,6 +435,9 @@ export async function getDomestic(
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              hotspot,
+              crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -443,12 +473,14 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage.asset->url,
+      "cardImage": cardImage{asset->{_id, url, metadata}, hotspot, crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
+        "asset": asset->{_id, url, metadata},
         "url": asset->url,
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       "mustDoThings": mustDoThings {
         isTrue,
@@ -457,7 +489,7 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
         description,
         "cards": cards[] {
           title,
-          "image": image.asset->url
+          "image": image{asset->{_id, url, metadata}, hotspot, crop}
         }
       },
       "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
@@ -468,6 +500,10 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          "asset": asset->{_id, url, metadata},
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         "addOns": addOns {
@@ -495,6 +531,9 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              hotspot,
+              crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -517,6 +556,10 @@ export async function getDomesticPackagesSlug(
       "packageImages": packageImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
       timeline,
       "addOns": addOns {
@@ -544,6 +587,10 @@ export async function getDomesticPackagesSlug(
           "images": images[] {
             "_id": asset->_id,
             "url": asset->url,
+            "asset": asset->{_id, url, metadata},
+            hotspot,
+            crop,
+            "metadata": asset->metadata,
           }
         }
       },
@@ -560,7 +607,7 @@ export async function getTrendingDomestic(): Promise<Domestic[]> {
       name,
       isTrending,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{url, _id, metadata}, hotspot, crop},
       "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
         _id,
         _createdAt,
@@ -576,7 +623,7 @@ export async function getTrendingDomestic(): Promise<Domestic[]> {
 export async function getWildLife(
   page: number = 1,
   pageSize: number = 9
-): Promise<{ data: wildLife[]; totalPages: number; }> {
+): Promise<{ data: wildLife[]; totalPages: number }> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
@@ -586,10 +633,13 @@ export async function getWildLife(
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{url, _id, metadata}, hotspot, crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
       "wildlifePackage": *[_type == "WildLifePackage" && references(^._id)] {
         _id,
@@ -599,6 +649,9 @@ export async function getWildLife(
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         deal,
@@ -617,6 +670,9 @@ export async function getWildLife(
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              hotspot,
+              crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -651,12 +707,14 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage.asset->url,
+      "cardImage": cardImage{asset->{url, _id, metadata}, hotspot, crop},
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
@@ -666,6 +724,10 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          "asset": asset->{_id, url, metadata},
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         "addOns": addOns {
@@ -693,6 +755,10 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              "asset": asset->{_id, url, metadata},
+              hotspot,
+              crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -715,8 +781,10 @@ export async function getWildlifePackagesSlug(
       "packageImages": packageImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       timeline,
       "addOns": addOns {
@@ -744,6 +812,10 @@ export async function getWildlifePackagesSlug(
           "images": images[] {
             "_id": asset->_id,
             "url": asset->url,
+            "asset": asset->{_id, url, metadata},
+            hotspot,
+            crop,
+            "metadata": asset->metadata,
           }
         }
       },
@@ -759,7 +831,7 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{url, _id, metadata}, hotspot, crop},
       "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
@@ -779,12 +851,15 @@ export async function getSpecial(): Promise<special[]> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage.asset->url,
+      "cardImage": cardImage{asset->{url, _id, metadata}, hotspot, crop},
       cardTitle,
       cardSubtitle,
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
     }`
   );
@@ -807,14 +882,16 @@ export async function getSpecialSlug(slug: string): Promise<special> {
       _createdAt,
       name,
       "slug": slug.current,
-      "cardImage": cardImage.asset->url,
+      "cardImage": cardImage{asset->{url, metadata, _id}, hotspot, crop},
       cardTitle,
       cardSubtitle,
       "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       "mustDoThings": mustDoThings {
         isTrue,
@@ -823,7 +900,7 @@ export async function getSpecialSlug(slug: string): Promise<special> {
         description,
         "cards": cards[] {
           title,
-          "image": image.asset->url
+          "image": image{asset->{url, _id, metadata}, hotspot, crop}
         }
       },
       "specialPackages": *[_type == "specialPackages" && references(^._id)] {
@@ -835,6 +912,10 @@ export async function getSpecialSlug(slug: string): Promise<special> {
         "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
+          "asset": asset->{_id, url, metadata},
+          hotspot,
+          crop,
+          "metadata": asset->metadata,
         },
         timeline,
         "addOns": addOns {
@@ -862,6 +943,10 @@ export async function getSpecialSlug(slug: string): Promise<special> {
             "images": images[] {
               "_id": asset->_id,
               "url": asset->url,
+              "asset": asset->{_id, url, metadata},
+              hotspot,
+              crop,
+              "metadata": asset->metadata,
             }
           }
         }
@@ -885,8 +970,10 @@ export async function getSpecialPackagesSlug(
       "packageImages": packageImages[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       timeline,
       "addOns": addOns {
@@ -914,6 +1001,10 @@ export async function getSpecialPackagesSlug(
           "images": images[] {
             "_id": asset->_id,
             "url": asset->url,
+            "asset": asset->{_id, url, metadata},
+            hotspot,
+            crop,
+            "metadata": asset->metadata,
           }
         }
       }
@@ -931,7 +1022,7 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
       _createdAt,
       title,
       "slug": slug.current,
-      "cardImage": cardImage{asset->{url}, hotspot, crop},
+      "cardImage": cardImage{asset->{_id,url, metadata}, hotspot, crop},
       reviewDate,
       shortReview,
       tripTo,
@@ -940,7 +1031,7 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
       },
       "profile": profile {
         name,
-        "image": image.asset->url,
+        "image": image{asset->{_id, url, metadata}, hotspot, crop},
       },
       rating,
     }`
@@ -950,7 +1041,7 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
 export async function getTestimonials(
   page: number = 1,
   pageSize: number = 6
-): Promise<{ data: Testimonial[]; totalPages: number; }> {
+): Promise<{ data: Testimonial[]; totalPages: number }> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
@@ -965,10 +1056,10 @@ export async function getTestimonials(
       "hashtags": hashtags[] {
         name,
       },
-      "cardImage": cardImage{asset->{url},hotspot,crop},    
+      "cardImage": cardImage{asset->{_id, url, metadata},hotspot,crop},    
       "profile": profile {
         name,
-        "image": image.asset->url,
+        "image": image{asset->{_id, url, metadata},hotspot,crop},
       },
       rating,
       shortReview,
@@ -1009,18 +1100,19 @@ export async function getTestimonialSlug(slug: string): Promise<Testimonial> {
       "hashtags": hashtags[] {
         name,
       },
-      "cardImage": cardImage{asset->{url},hotspot, crop},    
+      "cardImage": cardImage{asset->{_id, url, metadata},hotspot, crop},    
       "profile": profile {
         name,
-        "image": image.asset->url,
+        "image": image{asset->{_id, url, metadata},hotspot, crop},
       },
       rating,
       shortReview,
       "images": images[] {
         "_id": asset->_id,
         "url": asset->url,
-        "hotspot": hotspot,
-        "crop": crop,
+        hotspot,
+        crop,
+        "metadata": asset->metadata,
       },
       fullReview,
     }`,
@@ -1037,12 +1129,12 @@ export async function getAbout(): Promise<About> {
       _createdAt,
       title,
       subtitle,
-      "bannerImage":bannerImage.asset->url,
+      "bannerImage":bannerImage{asset->{_id, url, metadata}, hotspot, crop},
       aboutTitle,
       aboutDescription,
-      "imageOne": imageOne.asset->url,
-      "imageTwo": imageTwo.asset->url,
-      "imageThree": imageThree.asset->url,
+      "imageOne": imageOne{asset->{_id, url, metadata}, hotspot, crop},
+      "imageTwo": imageTwo{asset->{_id, url, metadata}, hotspot, crop},
+      "imageThree": imageThree{asset->{_id, url, metadata}, hotspot, crop},
       "vision": vision {
         title,
         description,  
@@ -1073,7 +1165,7 @@ export async function getContactUsInfo(): Promise<contactUs> {
       _createdAt,
       title,
       subtitle,
-      "bannerImage":bannerImage.asset->url,
+      "bannerImage":bannerImage{asset->{_id, url, metadata}, hotspot, crop},
       formInfo,
       Address,
       email,
@@ -1116,7 +1208,7 @@ export async function getBottomBanner(): Promise<footer> {
       "bottomBanner": bottomBanner {
         headline,
         description,
-        "image": image.asset->url
+        "image": image{asset->{_id, url, metadata}, hotspot, crop}
       }
     }`
   );
@@ -1132,13 +1224,13 @@ export async function getPrivacyPolicyAndTnc(): Promise<PrivacyPolicyAndTnc> {
       "privacyPolicy": privacyPolicy {
         title,
         updatedAt,
-        "bannerImage":bannerImage.asset->url,
+        "bannerImage":bannerImage{asset->{_id, url, metadata}, hotspot, crop},
         content,
       },
       "termsAndConditions": termsAndConditions {
         title,
         updatedAt,
-        "bannerImage":bannerImage.asset->url,
+        "bannerImage":bannerImage{asset->{_id, url, metadata}, hotspot, crop},
         content,
       },
     }`
@@ -1161,7 +1253,7 @@ export async function getItinerary(): Promise<Itinerary[]> {
       adults,
       children,
       infant,
-      "cardImage": cardImage{asset->{url, _id}, hotspot, crop},
+      "cardImage": cardImage{asset->{_id, url, metadata}, hotspot, crop},
       days,
       nights,
       itineraryTitle,
@@ -1174,12 +1266,14 @@ export async function getItinerary(): Promise<Itinerary[]> {
         "url": asset->url,
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       "placeImages": placeImages[] {
         "_id": asset->_id,
         "url": asset->url,
         hotspot,
         crop,
+        "metadata": asset->metadata,
       },
       inclusion,
       "itinerary": itinerary[] {
@@ -1196,12 +1290,13 @@ export async function getItinerary(): Promise<Itinerary[]> {
             "url": asset->url,
             hotspot,
             crop,
+            "metadata": asset->metadata,
           },
           description,
           experiences {
             title,
             "images": images[] {
-              "image": image{asset->{url, _id}, hotspot, crop},
+              "image": image{asset->{_id, url, metadata}, hotspot, crop},
               caption,
             }
           }

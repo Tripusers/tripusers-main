@@ -31,7 +31,7 @@ const Success = (props: { text: string }) => {
             src="https://i.postimg.cc/rw6Mf66s/Doodle-2-2x.png"
             alt="bg"
             fill
-            sizes={ImageSize.bannerSizes}
+            sizes={ImageSize.banner}
           />
         </div>
         <button onClick={() => changeState(false)}>
@@ -43,7 +43,7 @@ const Success = (props: { text: string }) => {
               src="https://i.postimg.cc/fTymq709/tick.gif"
               alt="tick"
               fill
-              sizes={ImageSize.bannerSizes}
+              sizes={ImageSize.banner}
             />
           </div>
         </div>

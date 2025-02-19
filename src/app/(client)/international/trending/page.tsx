@@ -8,6 +8,7 @@ import PageLoading from "@/components/default/loader/PageLoading";
 import { international } from "@/types/international";
 import ImageSize from "@/utils/image-utils";
 import SwiperHero from "@/components/international/trending/Swiper";
+import OptImage from "@/components/commmon/OptImage";
 
 const page = () => {
   const [internationalTrending, setInternationalTrending] =
@@ -41,10 +42,11 @@ const page = () => {
             >
               <div className="img-container">
                 {data?.cardImage && (
-                  <img
-                    src={data.cardImage.asset.url}
+                  <OptImage
+                    image={data.cardImage}
                     alt="hero background"
-                    sizes={ImageSize.cardSize}
+                    sizes="card"
+                    width={500}
                   />
                 )}
               </div>
