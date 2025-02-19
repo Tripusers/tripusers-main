@@ -1110,6 +1110,7 @@ export async function getTestimonialSlug(slug: string): Promise<Testimonial> {
       "images": images[] {
         "_id": asset->_id,
         "url": asset->url,
+        "asset": asset->{_id, url, metadata},
         hotspot,
         crop,
         "metadata": asset->metadata,
