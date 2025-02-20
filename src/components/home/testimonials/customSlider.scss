@@ -1,0 +1,136 @@
+@use "@/app/(client)/scss/variables" as *;
+
+.carousel_container {
+  position: relative;
+}
+
+.carousel_controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  top: 50%;
+  z-index: 5;
+}
+
+.carousel_btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: $yellow;
+  width: 26px;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.is_prev {
+  left: 10px;
+
+  @media screen and (min-width: 1025px) {
+    left: -40px;
+  }
+}
+
+.is_next {
+  right: 10px;
+
+  @media screen and (min-width: 1025px) {
+    right: -40px;
+  }
+}
+
+.carousel_slider {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  margin: 0;
+  //overflow: hidden;
+  padding: 0;
+  right: 0;
+  top: 0;
+}
+
+.is_data_slider {
+  display: block;
+  //height: 600px;
+}
+
+.carousel_card {
+  width: 80vw;
+  aspect-ratio: 1/1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  top: 50%;
+  transform-origin: top left;
+  transform: scale(0.6) translate(-50%, -50%);
+  transition:
+    transform 300ms ease-in-out,
+    opacity 300ms ease-in-out;
+  z-index: 1;
+  opacity: 0;
+
+  @media screen and (min-width: 820px) {
+    width: 90%;
+  }
+
+  @media screen and (min-width: 1025px) {
+    width: 88%;
+  }
+
+  &.is_data_card {
+    width: 100%;
+    transform: scale(1) translate(-50%, 0%);
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+.carousel_card.is_active {
+  transform: scale(1) translate(-50%, 0%);
+
+  &:not(.is_data_card) {
+    transform: scale(1) translate(-50%, -50%);
+    position: absolute;
+  }
+  opacity: 1;
+  z-index: 4;
+  pointer-events: visible;
+  position: relative;
+}
+
+.carousel_card.is_left {
+  transform: scale(1) translate(-50%, 0%);
+  &:not(.is_data_card) {
+    transform: scale(0.8) translate(-70%, -50%);
+  }
+  z-index: 3;
+  opacity: 1;
+}
+
+.carousel_card.is_right {
+  transform: scale(1) translate(-50%, 0%);
+  &:not(.is_data_card) {
+    transform: scale(0.8) translate(-30%, -50%);
+  }
+  z-index: 2;
+  opacity: 1;
+}
+
+.carousel_card.is_data_card {
+  &.is_left,
+  &.is_right {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

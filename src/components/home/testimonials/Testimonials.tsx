@@ -1,28 +1,15 @@
 "use client";
 
-import { AiFillStar } from "react-icons/ai";
-import { BsStars } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
-import "./style.scss";
-import {
-  Navigation,
-  Autoplay,
-  EffectFade,
-  EffectCoverflow,
-} from "swiper/modules";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/effect-cards";
-import "swiper/css/effect-fade";
-import { trending } from "@/types/trending";
+import { useEffect, useState } from "react";
+import CustomSlider from "./CustomSlider";
 import Testimonial from "@/types/testimonials";
+import { trending } from "@/types/trending";
 import { getTrending, getTrendingTestimonials } from "@/sanity/sanity-utils";
-import ImageSize from "@/utils/image-utils";
-import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
 import OptImage from "@/components/commmon/OptImage";
+import "./style.scss";
+import { BsStars } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 
 function getRandomUniqueElements(array: any[], count: number) {
   // Shuffle the input array
@@ -44,14 +31,14 @@ function getRandomUniqueElements(array: any[], count: number) {
 
   return result;
 }
+
 const Testimonials = () => {
   const [trending, setTrending] = useState<trending>();
   const [trendingTestimonial, setTrendingTestimonial] = useState<Testimonial[]>(
     []
   );
 
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
 
   const fetchTrendingData = async () => {
     const trendingData = await getTrending();
@@ -67,8 +54,6 @@ const Testimonials = () => {
     fetchTrendingData();
     fetchTrendingTestimonialData();
   }, []);
-  //console.log("fetchTrending ->", trending);
-  //console.log("fetchTrendingTestimonial ->", trendingTestimonial);
 
   const getStarColor = (
     rating: string | undefined,
@@ -78,101 +63,56 @@ const Testimonials = () => {
     return starIndex < ratingValue ? "#fd8f04" : "#1d1d1f";
   };
 
-  const isMobile = useMediaQuery({ maxWidth: 820 });
-  const isTablet = useMediaQuery({ maxWidth: 1025 });
-  const isMac = useMediaQuery({ maxWidth: 1400 });
+  if (trendingTestimonial.length == 0) {
+    return (
+      <section id="Testimonials">
+        <div className="title_container">
+          <BsStars size={40} />
+          <h2>{trending?.testimonialName}</h2>
+          <p>{trending?.testimonialSubtitle}</p>
+          <Link href="/testimonials">View All</Link>
+        </div>
+        <div className="testimonials-container">
+          <p>No data / Loading...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section id="testimonials">
-      <div className="title-container">
+    <section id="Testimonials">
+      <div className="title_container">
         <BsStars size={40} />
         <h2>{trending?.testimonialName}</h2>
         <p>{trending?.testimonialSubtitle}</p>
         <Link href="/testimonials">View All</Link>
       </div>
-      <div className="testimonials-container">
-        {trendingTestimonial.length > 0 ? (
-          <Swiper
-            initialSlide={0}
-            effect={"coverflow"}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            centeredSlides={true}
-            navigation={{
-              prevEl: ".prev",
-              nextEl: ".next",
-            }}
-            loop={true}
-            modules={[EffectCoverflow, Autoplay, Navigation]}
-            speed={500}
-            allowTouchMove={false}
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: isMobile ? 300 : isTablet ? 340 : isMac ? 320 : 520,
-              depth: 100,
-              modifier: 1,
-              slideShadows: false,
-            }}
-            className="mySwiper-images swiper-container"
-          >
+      <div className="testimonials_container">
+        <div className="left">
+          <CustomSlider current={current} setCurrent={setCurrent}>
             {trendingTestimonial.map((data, index) => (
-              <SwiperSlide
-                key={index}
-                className="swiper-slide swiperSlide-card"
+              <Link
+                href={`/testimonials/${data.slug}`}
+                key={`${data._id}-${index}`}
               >
-                <Link href={`/testimonials/${data.slug}`}>
-                  {data && data.cardImage && (
-                    <OptImage
-                      image={data.cardImage}
-                      alt="hero background"
-                      sizes="card"
-                      width={500}
-                    />
-                  )}
-                </Link>
-              </SwiperSlide>
+                {data.cardImage && (
+                  <OptImage
+                    image={data.cardImage}
+                    alt="hero background"
+                    sizes="card"
+                    className="testimonial_img"
+                  />
+                )}
+              </Link>
             ))}
-            {trendingTestimonial.length > 0 && (
-              <>
-                <div className="prev" ref={prevRef}>
-                  <div className="size">prev</div>
-                </div>
-                <div className="next" ref={nextRef}>
-                  <div className="size">next</div>
-                </div>
-              </>
-            )}
-          </Swiper>
-        ) : (
-          <p>No data / Loading...</p>
-        )}
-        {trendingTestimonial.length > 0 ? (
-          <Swiper
-            initialSlide={0}
-            effect={"fade"}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            centeredSlides={true}
-            loop={true}
-            modules={[Autoplay, EffectFade, Navigation]}
-            speed={500}
-            allowTouchMove={false}
-            slidesPerView={1}
-            navigation={{
-              prevEl: ".prev",
-              nextEl: ".next",
-            }}
-            className="mySwiper-content"
-          >
+          </CustomSlider>
+        </div>
+        <div className="right">
+          <CustomSlider type="data" current={current} setCurrent={setCurrent}>
             {trendingTestimonial.map((data, index) => (
-              <SwiperSlide key={index} className="swiperSlide-card">
+              <div className="data_container" key={`${data._id}-${index}`}>
                 <Link className="title" href={`/testimonials/${data.slug}`}>
-                  <h3>{data?.title}</h3>
+                  <h3>{data.title}</h3>
                 </Link>
                 <div className="hashtags">
                   {data.hashtags &&
@@ -218,16 +158,13 @@ const Testimonials = () => {
                     <p>Trip to {data.tripTo}</p>
                   </div>
                 </div>
-
                 <Link className="button" href={`/testimonials/${data.slug}`}>
                   Read Full Story
                 </Link>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
-        ) : (
-          <p>No data / Loading...</p>
-        )}
+          </CustomSlider>
+        </div>
       </div>
     </section>
   );
