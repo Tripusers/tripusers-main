@@ -14,7 +14,7 @@ interface CustomSliderProps {
 
 const CustomSlider = ({
   children = [],
-  autoSlide = false,
+  autoSlide = true,
   slideInterval = 3000,
   current: externalCurrent,
   setCurrent: externalSetCurrent,
