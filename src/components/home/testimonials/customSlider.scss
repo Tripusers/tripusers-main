@@ -18,7 +18,9 @@
   top: 0;
   bottom: 0;
   background-color: $yellow;
+  background-color: #fd8f04;
   width: 26px;
+  height: 26px;
   aspect-ratio: 1;
   transform: translateY(-50%);
   border-radius: 50%;
@@ -64,7 +66,8 @@
 
 .carousel_card {
   width: 80vw;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
+  height: fit-content;
   position: absolute;
   bottom: 0;
   left: 50%;
