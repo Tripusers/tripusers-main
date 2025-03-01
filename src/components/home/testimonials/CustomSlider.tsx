@@ -55,7 +55,7 @@ const CustomSlider = ({
   const prevSlide = current - 1 < 0 ? children.length - 1 : current - 1;
   const nextSlide = current + 1 > children.length - 1 ? 0 : current + 1;
 
-  console.log("current->", current);
+  //console.log("current->", current);
 
   return (
     <div
