@@ -18,6 +18,13 @@ const itinerary = {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      name: "clientAccepted",
+      title: "Client Accepted",
+      type: "boolean",
+      initialValue: false,
+      description: "If the client has accepted the itinerary, then check this box",
+    },
+    {
       name: "clientNumber",
       title: "Client Number",
       type: "string",

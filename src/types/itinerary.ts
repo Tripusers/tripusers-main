@@ -5,6 +5,7 @@ import { PortableTextBlock } from "sanity";
 export type Itinerary = {
     title: string;
     clientName: string;
+    clientAccepted: boolean;
     clientNumber?: string;
     tripTo: string;
     date: string;
