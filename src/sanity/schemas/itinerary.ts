@@ -294,6 +294,12 @@ const itinerary = {
                   description: "Time in hours (0-24)",
                 },
                 {
+                  name: "startDate",
+                  title: "start Date",
+                  type: "datetime",
+                  description: "Check In Date",
+                },
+                {
                   name: "endsAt",
                   title: "Ends At",
                   type: "number",

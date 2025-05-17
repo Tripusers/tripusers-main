@@ -76,7 +76,7 @@ const page = () => {
     router.push("/testimonials/#testimonialsData");
   };
 
-  console.log("Testimonials ->", testimonials);
+  //console.log("Testimonials ->", testimonials);
 
   const getStarColor = (
     rating: string | undefined,
